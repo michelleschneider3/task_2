@@ -15,6 +15,7 @@ void Tribe::setTribe(string tribeName, int maxSurvivors) {
 }
 
 Tribe::~Tribe() {
+	cout << "The Tribe " << this->tribeName << " is destroyed from address : " << this << endl;
 	for (int i = 0; i < this->numSurvivors; i++)
 		delete this->survivorsArray[i];
 	delete[] this->survivorsArray;
