@@ -25,7 +25,6 @@ public:
 	Tribe(string tribeName = "Unknown", int maxSurvivor = 0);
 	~Tribe();
 
-	bool isValidNumber(const char* str);
 	void printMenu();
 	void printTribe() const;
 	void addSurvivorToTribe(string name, int age, char status);

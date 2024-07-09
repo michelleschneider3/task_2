@@ -66,7 +66,7 @@ int Tribe::findSurvivorByName(string n) {
 	return -1;
 }
 
-bool Tribe::isValidNumber(const char* str) {
+bool isValidNumber(const char* str) {
 	for (int i = 0; str[i] != '\0'; i++) {
 		if (str[i] < '0' || str[i] > '9') {
 			return false;
@@ -75,6 +75,20 @@ bool Tribe::isValidNumber(const char* str) {
 	return true;
 }
 
+int maxSurvivorsValidation() {
+	char maxSurvivorsStr[10]; // נניח שהמספר לא יעלה על 10 תווים
+	int maxSurvivors;
+
+	do {
+		cout << "Enter the maximum number of survivors: " << endl;
+		cin >> maxSurvivorsStr;
+		if (!isValidNumber(maxSurvivorsStr)) {
+			cout << "Invalid input. Please enter a valid number." << endl;
+		}
+	} while (!isValidNumber(maxSurvivorsStr));
+
+	return atoi(maxSurvivorsStr);
+}
 
 void Tribe::printMenu() {
 	while (1) {
@@ -132,11 +146,28 @@ void Tribe::printMenu() {
 			}
 			break;
 		case 5:
-			cout << "Bey bey, see you again soon.";
+			cout << "Bey bey, see you again soon." << endl;
 			return;
 		default:
 			cout << "Wrong choice, please try again." << endl;
 		}
 	}
+}
+
+void main() {
+	string nameFirstTribe;
+	string nameSecendTribe;
+	int maxSurvivorsFirstTribe;
+	int maxSurvivorsSecendTribe;
+
+	cout << "Enter the name of the first tribe: " << endl;
+	cin >> nameFirstTribe;
+	maxSurvivorsFirstTribe = maxSurvivorsValidation();
+	Tribe firstTribe(nameFirstTribe, maxSurvivorsFirstTribe);
+
+	cout << "Enter the name of the secend tribe: " << endl;
+	cin >> nameSecendTribe;
+	maxSurvivorsSecendTribe = maxSurvivorsValidation();
+	Tribe secendTribe(nameSecendTribe, maxSurvivorsSecendTribe);
 }
 

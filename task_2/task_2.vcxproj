@@ -131,7 +131,6 @@
     <ClInclude Include="Tribe.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Survivor.cpp" />
     <ClCompile Include="Tribe.cpp" />
   </ItemGroup>
