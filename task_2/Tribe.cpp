@@ -33,11 +33,6 @@ void Tribe::printTribe() const {
 }
 
 void Tribe::addSurvivorToTribe(string name, int age, char status) {
-	if (this->numSurvivors == this->maxSurvivors) {
-		cout << "No space in the tribe for a new survivor" << endl;
-		return;
-	}
-
 	this->survivorsArray[this->numSurvivors] = new Survivor(name, age, status);
 	this->numSurvivors++;
 
@@ -55,7 +50,7 @@ void Tribe::removeSurvivorFromTribe(string tribeName) {
 		this->survivorsArray[i] = this->survivorsArray[i + 1];
 	this->survivorsArray[this->numSurvivors - 1] = NULL;
 	this->numSurvivors--;
-	cout << "A survivor is removed from the tribe." << endl;
+	cout << "The survivor is removed from the tribe." << endl;
 }
 
 int Tribe::findSurvivorByName(string n) {
@@ -115,6 +110,10 @@ void Tribe::printMenu() {
 			this->printTribe();
 			break;
 		case 2:
+			if (this->numSurvivors == this->maxSurvivors) {
+				cout << "No space in the tribe for a new survivor" << endl;
+				break;
+			}
 			cout << "Enter the name: ";
 			cin >> name;
 			do {
@@ -130,7 +129,11 @@ void Tribe::printMenu() {
 			this->addSurvivorToTribe(name, age, status);
 			break;
 		case 3:
-			cout << "Enter the survivor's name: " << endl;
+			if (this->numSurvivors == 0) {
+				cout << "There is no survivors to remove." << endl;
+				break;
+			}
+			cout << "Enter the survivor's name: ";
 			cin >> name;
 			this->removeSurvivorFromTribe(name);
 			break;
@@ -139,7 +142,7 @@ void Tribe::printMenu() {
 			cin >> name;
 			index = this->findSurvivorByName(name);
 			if (index == -1) {
-				cout << "NO survivor such that";
+				cout << "NO survivor such that." << endl;
 			} else {
 				cout << "Found at index: " << index << endl;
 				this->survivorsArray[index]->printSurvivor();

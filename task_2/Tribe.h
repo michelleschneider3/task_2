@@ -8,7 +8,6 @@ private:
 	Survivor** survivorsArray; // מערך של מצביעים זה **
 
 public:
-
 	//getters:
 	string getName() const { return this->tribeName; }
 	int getMaxSurvivers() const { return this->maxSurvivors; }
@@ -30,5 +29,4 @@ public:
 	void addSurvivorToTribe(string name, int age, char status);
 	void removeSurvivorFromTribe(string tribeName);
 	int findSurvivorByName(string n);
-	
 };
