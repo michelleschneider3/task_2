@@ -31,4 +31,5 @@ public:
 	void removeTheYoungestSurvivorFromTribe();
 	int findSurvivorByName(string n);
 	string findTheYoungestSurvivor();
+	void sortSurvivorsByName();
 };

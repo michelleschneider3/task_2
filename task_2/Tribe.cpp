@@ -99,6 +99,18 @@ int maxSurvivorsValidation() {
 	return atoi(maxSurvivorsStr);
 }
 
+void Tribe::sortSurvivorsByName() {
+	for (int i = 0; i < this->numSurvivors - 1; i++) {
+		for (int j = 0; j < this->numSurvivors - i - 1; j ++) {
+			if (this->survivorsArray[j]->getName() > this->survivorsArray[j + 1]->getName()) {
+				Survivor* temp = this->survivorsArray[j];
+				this->survivorsArray[j] = this->survivorsArray[j + 1];
+				this->survivorsArray[j + 1] = temp; 
+			}
+		}
+	}
+}
+
 void Tribe::printMenu() {
 	while (1) {
 		int choice;
@@ -116,7 +128,8 @@ void Tribe::printMenu() {
 		cout << "3) Remove survivor from the tribe" << endl;
 		cout << "4) Find a survivor by name" << endl;
 		cout << "5) Remove the youngest survivor" << endl;
-		cout << "6) Exit" << endl;
+		cout << "6) Sort survivors by name" << endl;
+		cout << "7) Exit" << endl;
 		cout << "****************************************************" << endl;
 
 		do {
@@ -175,6 +188,10 @@ void Tribe::printMenu() {
 			this->removeTheYoungestSurvivorFromTribe();
 			break;
 		case 6:
+			this->sortSurvivorsByName();
+			this->printTribe();
+			break;
+		case 7:
 			cout << "Bey bey, see you again soon." << endl;
 			return;
 		default:
