@@ -17,7 +17,6 @@ public:
 	void setName(string n) { this->survivorName = n; }
 	void setAge(int a) { this->survivorAge = a; }
 	void setStatus(int s) { this->survivorStatus = s; }
-	
 	void setSurvivor(string name = "John Doe", int age = 18, char status = 's');
 
 	//Constructors:
@@ -25,7 +24,7 @@ public:
 	Survivor(const Survivor& other);
 	Survivor(bool flag);
 
-	//Destructors:
+	//Destructor:
 	~Survivor() { cout << "The Survivor " << this->survivorName << " is destroyed from address : " << this << endl; };
 
 	void printSurvivor() const;

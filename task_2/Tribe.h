@@ -18,7 +18,6 @@ public:
 	void setTribeName(string n) { this->tribeName = n; }
 	void setMaxSurvivors(int max) { this->maxSurvivors = max; }
 	void setNumSurvivors(int num) { this->numSurvivors = num; }
-	
 	void setTribe(string tribeName, int maxSurvivor);
 
 	Tribe(string tribeName = "Unknown", int maxSurvivor = 0);
@@ -26,7 +25,10 @@ public:
 
 	void printMenu();
 	void printTribe() const;
+
 	void addSurvivorToTribe(string name, int age, char status);
 	void removeSurvivorFromTribe(string tribeName);
+	void removeTheYoungestSurvivorFromTribe();
 	int findSurvivorByName(string n);
+	string findTheYoungestSurvivor();
 };

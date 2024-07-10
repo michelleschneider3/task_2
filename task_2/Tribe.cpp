@@ -25,7 +25,7 @@ void Tribe::printTribe() const {
 	cout << "Tribe details: " << endl;
 	cout << "Tribe's name: " << this->tribeName << endl;
 	cout << "Tribe's capacity: " << this->maxSurvivors << endl;
-	cout << "Numbers of survivors: " << this->numSurvivors << endl;
+	cout << "Number of survivors: " << this->numSurvivors << endl;
 	cout << "-----------------------------------------" << endl;
 	for (int i = 0; i < this->numSurvivors; i++) {
 		cout << "Survivor number " << i+1 << ": " << endl;
@@ -51,7 +51,20 @@ void Tribe::removeSurvivorFromTribe(string tribeName) {
 		this->survivorsArray[i] = this->survivorsArray[i + 1];
 	this->survivorsArray[this->numSurvivors - 1] = NULL;
 	this->numSurvivors--;
-	cout << "The survivor is removed from the tribe." << endl;
+}
+
+string Tribe::findTheYoungestSurvivor() {
+	Survivor* youngestSurvivor = this->survivorsArray[0];
+	for (int i = 1; i < this->numSurvivors; i++) {
+		if (this->survivorsArray[i]->getAge() < youngestSurvivor->getAge()) {
+			youngestSurvivor = this->survivorsArray[i];
+		}
+	}
+	return youngestSurvivor->getName();
+}
+
+void Tribe::removeTheYoungestSurvivorFromTribe() {
+	removeSurvivorFromTribe(findTheYoungestSurvivor());
 }
 
 int Tribe::findSurvivorByName(string n) {
@@ -101,7 +114,8 @@ void Tribe::printMenu() {
 		cout << "2) Insert a new survivor" << endl;
 		cout << "3) Remove survivor from the tribe" << endl;
 		cout << "4) Find a survivor by name" << endl;
-		cout << "5) Exit" << endl;
+		cout << "5) Remove the youngest survivor" << endl;
+		cout << "6) Exit" << endl;
 		cout << "****************************************************" << endl;
 		cout << "Enter your choice: ";
 		cin >> choice;
@@ -149,7 +163,10 @@ void Tribe::printMenu() {
 				this->survivorsArray[index]->printSurvivor();
 			}
 			break;
-		case 5:
+		case 5: 
+			this->removeTheYoungestSurvivorFromTribe();
+			break;
+		case 6:
 			cout << "Bey bey, see you again soon." << endl;
 			return;
 		default:
