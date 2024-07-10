@@ -102,6 +102,7 @@ int maxSurvivorsValidation() {
 void Tribe::printMenu() {
 	while (1) {
 		int choice;
+		char choiceStr[1];
 		string name;
 		char ageStr[3]; // נניח שהמספר לא יעלה על 3 תווים
 		int age;
@@ -117,8 +118,15 @@ void Tribe::printMenu() {
 		cout << "5) Remove the youngest survivor" << endl;
 		cout << "6) Exit" << endl;
 		cout << "****************************************************" << endl;
-		cout << "Enter your choice: ";
-		cin >> choice;
+
+		do {
+			cout << "Enter your choice: ";
+			cin >> choiceStr;
+			if (!isValidNumber(choiceStr)) {
+				cout << "Invalid input. Please enter a valid number." << endl;
+			}
+		} while (!isValidNumber(choiceStr));
+		choice = atoi(choiceStr);
 
 		switch (choice) {
 		case 1:
