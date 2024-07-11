@@ -84,19 +84,19 @@ bool isValidNumber(const char* str) {
 	return true;
 }
 
-int maxSurvivorsValidation() {
-	char maxSurvivorsStr[10]; // נניח שהמספר לא יעלה על 10 תווים
-	int maxSurvivors;
+int inputValidation(string output) {
+	char inputStr[10]; // נניח שהמספר לא יעלה על 10 תווים
+	int input;
 
 	do {
-		cout << "Enter the maximum number of survivors: " << endl;
-		cin >> maxSurvivorsStr;
-		if (!isValidNumber(maxSurvivorsStr)) {
+		cout << output;
+		cin >> inputStr;
+		if (!isValidNumber(inputStr)) {
 			cout << "Invalid input. Please enter a valid number." << endl;
 		}
-	} while (!isValidNumber(maxSurvivorsStr));
+	} while (!isValidNumber(inputStr));
 
-	return atoi(maxSurvivorsStr);
+	return atoi(inputStr);
 }
 
 void Tribe::sortSurvivorsByName() {
@@ -120,6 +120,8 @@ void Tribe::printMenu() {
 		int age;
 		char status;
 		int index;
+		string choiceOutput = "Enter your choice: ";
+		string ageOutput = "Enter the age: ";
 		
 		cout << "****************************************************" << endl;
 		cout << "NENU" << endl;
@@ -131,15 +133,7 @@ void Tribe::printMenu() {
 		cout << "6) Sort survivors by name" << endl;
 		cout << "7) Exit" << endl;
 		cout << "****************************************************" << endl;
-
-		do {
-			cout << "Enter your choice: ";
-			cin >> choiceStr;
-			if (!isValidNumber(choiceStr)) {
-				cout << "Invalid input. Please enter a valid number." << endl;
-			}
-		} while (!isValidNumber(choiceStr));
-		choice = atoi(choiceStr);
+		choice = inputValidation(choiceOutput);
 
 		switch (choice) {
 		case 1:
@@ -152,14 +146,7 @@ void Tribe::printMenu() {
 			}
 			cout << "Enter the name: ";
 			cin >> name;
-			do {
-				cout << "Enter the age: ";
-				cin >> ageStr;
-				if (!isValidNumber(ageStr)) {
-					cout << "Invalid input. Please enter a valid number." << endl;
-				}
-			} while (!isValidNumber(ageStr));
-			age = atoi(ageStr);
+			age = inputValidation(ageOutput);
 			cout << "Enter the status (m for married, s for single, r for in relationship): ";
 			cin >> status;
 			this->addSurvivorToTribe(name, age, status);
@@ -205,15 +192,16 @@ void main() {
 	string nameSecendTribe;
 	int maxSurvivorsFirstTribe;
 	int maxSurvivorsSecendTribe;
+	string maxSurvivorsOutput = "Enter the maximum number of survivors: ";
 
-	cout << "Enter the name of the first tribe: " << endl;
+	cout << "Enter the name of the first tribe: ";
 	cin >> nameFirstTribe;
-	maxSurvivorsFirstTribe = maxSurvivorsValidation();
+	maxSurvivorsFirstTribe = inputValidation(maxSurvivorsOutput);
 	Tribe firstTribe(nameFirstTribe, maxSurvivorsFirstTribe);
 
-	cout << "Enter the name of the secend tribe: " << endl;
+	cout << "Enter the name of the secend tribe: ";
 	cin >> nameSecendTribe;
-	maxSurvivorsSecendTribe = maxSurvivorsValidation();
+	maxSurvivorsSecendTribe = inputValidation(maxSurvivorsOutput);
 	Tribe secendTribe(nameSecendTribe, maxSurvivorsSecendTribe);
 }
 
